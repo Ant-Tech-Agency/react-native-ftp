@@ -1,5 +1,5 @@
 {
-  "name": "react-native-ftp-service-example",
+  "name": "@anttech/react-native-ftp-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {

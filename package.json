@@ -1,6 +1,10 @@
 {
-  "name": "react-native-ftp",
-  "version": "0.2.1",
+  "name": "@anttech/react-native-ftp",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "version": "0.2.2",
   "description": "ant-tech.eu",
   "source": "./src/index.tsx",
   "main": "./lib/module/index.js",
@@ -31,7 +35,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-ftp-service-example",
+    "example": "yarn workspace react-native-ftp-example",
     "test": "jest",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -54,9 +58,6 @@
     "url": "https://github.com/Ant-Tech-Agency/react-native-ftp/issues"
   },
   "homepage": "https://ant-tech.eu/",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.6.0",
     "@evilmartians/lefthook": "^1.5.0",
@@ -145,7 +146,7 @@
     ]
   },
   "codegenConfig": {
-    "name": "RNFtpServiceSpec",
+    "name": "FtpService",
     "type": "modules",
     "jsSrcsDir": "src",
     "outputDir": {

@@ -19,7 +19,7 @@ import FtpService, {
   type ProgressInfo,
   type FileInfo,
   type TaskToken,
-} from 'react-native-ftp-service';
+} from '@anttech/react-native-ftp';
 import RNFS from 'react-native-fs';
 
 function PlatformInfo() {
@@ -453,16 +453,16 @@ export default function App() {
       } else if (androidVersion >= 29) {
         // Android 10 (API 29) trở lên
         try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-            {
-              title: 'Quyền truy cập bộ nhớ',
-              message: 'Ứng dụng cần quyền để lưu file tải về',
-              buttonNeutral: 'Hỏi lại sau',
-              buttonNegative: 'Từ chối',
-              buttonPositive: 'Đồng ý',
-            }
-          );
+          // Use a type cast to Permission to handle potentially undefined permissions
+          const permission = PermissionsAndroid.PERMISSIONS
+            .READ_EXTERNAL_STORAGE as any;
+          const granted = await PermissionsAndroid.request(permission, {
+            title: 'Quyền truy cập bộ nhớ',
+            message: 'Ứng dụng cần quyền để lưu file tải về',
+            buttonNeutral: 'Hỏi lại sau',
+            buttonNegative: 'Từ chối',
+            buttonPositive: 'Đồng ý',
+          });
           return granted === PermissionsAndroid.RESULTS.GRANTED;
         } catch (err) {
           console.warn(err);
@@ -470,12 +470,14 @@ export default function App() {
         }
       } else {
         // Android 9 và cũ hơn
-        const readGranted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-        );
-        const writeGranted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-        );
+        // Use type casts to Permission to handle potentially undefined permissions
+        const readPermission = PermissionsAndroid.PERMISSIONS
+          .READ_EXTERNAL_STORAGE as any;
+        const writePermission = PermissionsAndroid.PERMISSIONS
+          .WRITE_EXTERNAL_STORAGE as any;
+
+        const readGranted = await PermissionsAndroid.request(readPermission);
+        const writeGranted = await PermissionsAndroid.request(writePermission);
         return (
           readGranted === PermissionsAndroid.RESULTS.GRANTED &&
           writeGranted === PermissionsAndroid.RESULTS.GRANTED

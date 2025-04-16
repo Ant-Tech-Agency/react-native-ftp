@@ -1,4 +1,4 @@
-# react-native-ftp-service
+# @anttech/react-native-ftp
 
 Bibliothèque de service FTP pour React Native
 
@@ -13,63 +13,25 @@ Bibliothèque de service FTP pour React Native
 
 ### 1. Installation de la bibliothèque
 
-```sh
+````sh
 # Utiliser npm
-npm install react-native-ftp-service
+npm install @anttech/react-native-ftp
 
 # Ou utiliser yarn
-yarn add react-native-ftp-service
+yarn add @anttech/react-native-ftp
 
 ### 2. Configuration iOS
 
 ```sh
 cd ios && pod install
-```
-
-### 3. Configuration Android
-
-Assurez-vous que le module FtpService est enregistré dans `MainApplication.java`:
-
-```java
-package com.yourapp;
-
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.defaults.DefaultReactNativeHost;
-import com.facebook.soloader.SoLoader;
-import java.util.List;
-
-// Ajouter cet import
-import com.ftpservice.FtpServicePackage;
-
-public class MainApplication extends Application implements ReactApplication {
-  private final ReactNativeHost mReactNativeHost =
-      new DefaultReactNativeHost(this) {
-        @Override
-        protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
-          List<ReactPackage> packages = new PackageList(this).getPackages();
-
-          // Ajouter cette ligne pour enregistrer FtpServicePackage
-          packages.add(new FtpServicePackage());
-
-          return packages;
-        }
-
-        // Reste de MainApplication.java
-      };
-}
-```
-
-**Note:**  : Si vous utilisez React Native CLI, il est possible que react-native link ajoute automatiquement ce package. Vérifiez MainApplication.java pour vous en assurer.
+````
 
 ## Utilisation
 
 ### 1. Connexion FTP
 
 ```js
-import FtpService from 'react-native-ftp-service';
+import FtpService from '@anttech/react-native-ftp';
 
 // Se connecter au serveur FTP
 const connect = async () => {
@@ -96,7 +58,7 @@ const listFiles = async (path = '/') => {
 };
 ```
 
-### 3.  Télécharger un fichier
+### 3. Télécharger un fichier
 
 ```js
 // Télécharger un fichier vers le serveur
@@ -160,7 +122,6 @@ const deleteDirectory = async (path) => {
     console.error('Erreur lors de la suppression du dossier :', error);
   }
 };
- 
 ```
 
 ### 7. Renommer un fichier ou un dossier
@@ -219,5 +180,3 @@ Consultez le guide de contribution sur [CONTRIBUTING.md](CONTRIBUTING.md) pour s
 MIT
 
 ---
-
-Créé par [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
